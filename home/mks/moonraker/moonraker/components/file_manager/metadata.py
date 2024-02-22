@@ -287,6 +287,14 @@ class BaseSlicer(object):
     def parse_nozzle_diameter(self) -> Optional[float]:
         return None
 
+    def parse_gimage(self) -> Optional[str]:
+        return _regex_find_string_znp(
+            r";gimage:", self.header_data)
+
+    def parse_simage(self) -> Optional[str]:
+        return _regex_find_string_znp(
+            r";simage:", self.header_data)
+
 class UnknownSlicer(BaseSlicer):
     def check_identity(self, data: str) -> Optional[Dict[str, str]]:
         return {'slicer': "Unknown"}
@@ -313,7 +321,8 @@ class PrusaSlicer(BaseSlicer):
         aliases = {
             'PrusaSlicer': r"PrusaSlicer\s(.*)\son",
             'SuperSlicer': r"SuperSlicer\s(.*)\son",
-            'SliCR-3D': r"SliCR-3D\s(.*)\son"
+            'SliCR-3D': r"SliCR-3D\s(.*)\son",
+            'OrcaSlicer': r"OrcaSlicer\s(.*)\son"
         }
         for name, expr in aliases.items():
             match = re.search(expr, data)
@@ -547,14 +556,6 @@ class Cura(BaseSlicer):
             log_to_stderr(str(e))
             return None
         return thumbs
-
-    def parse_gimage(self) -> Optional[str]:
-        return _regex_find_string_znp(
-            r";gimage:", self.header_data)
-
-    def parse_simage(self) -> Optional[str]:
-        return _regex_find_string_znp(
-            r";simage:", self.header_data)
 
 class Simplify3D(BaseSlicer):
     def check_identity(self, data: str) -> Optional[Dict[str, str]]:
