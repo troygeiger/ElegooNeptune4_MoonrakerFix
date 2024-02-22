@@ -417,6 +417,14 @@ class PrusaSlicer(BaseSlicer):
         return _regex_find_int(
             r"; total layers count = (\d+)", self.footer_data)
 
+    def parse_gimage(self) -> Optional[str]:
+        return _regex_find_string_znp(
+            r";gimage:", self.footer_data)
+
+    def parse_simage(self) -> Optional[str]:
+        return _regex_find_string_znp(
+            r";simage:", self.footer_data)
+
 class Slic3rPE(PrusaSlicer):
     def check_identity(self, data: str) -> Optional[Dict[str, str]]:
         match = re.search(r"Slic3r\sPrusa\sEdition\s(.*)\son", data)
