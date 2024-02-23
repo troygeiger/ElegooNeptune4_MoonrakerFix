@@ -18,16 +18,3 @@ the web ui.
 
 My hope is that this repo will only need to be temporary and that Elegoo will
 implement these changes.
-
-## How to copy the metadata.py file to printer
-
-**NOTE: This has only been tested for my version Neptune 4 Pro and I'm not sure
-if Elegoo has any other versions of the metadata.py file for each printer model.
-You may want to compare your version to what is in this repo or make a backup of
-the file for your printer.**
-
-The easies method is to use scp to copy the file over ssh.
-
-```shell
-scp home/mks/moonraker/moonraker/components/file_manager/metadata.py mks@[your_printers_ip_address]:~/moonraker/moonraker/components/file_manager/
-```
