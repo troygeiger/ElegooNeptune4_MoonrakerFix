@@ -1,4 +1,4 @@
-# Elegoo Neptune 4 Pro - Moonraker Metadata FIx
+# Elegoo Neptune 4 Pro - Moonraker Metadata Fix
 
 Up to and including the latest firmware version (1.1.2.53), thumbnails and other
 metadata would not be displayed when using other slicers such as Orca Slicer or
